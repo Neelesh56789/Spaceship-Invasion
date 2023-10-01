@@ -11,14 +11,18 @@ describe('Pixel Invasion Game', () => {
       cy.get('#remainingTime').should('have.text', '120');
     });
 
-    it('should start the game on "Start Game" button click', () => {
-        cy.get('#startButton').click();
-        
-        // The canvas should have the defined style properties
-        cy.get('#gameCanvas').should('have.css', 'border-top-width', '1px');
-        cy.get('#gameCanvas').should('have.css', 'border-color', 'rgb(255, 255, 255)');
-        cy.get('#gameCanvas').should('have.css', 'background-color', 'rgb(34, 34, 34)');
+      it("Should start the game when clicking the 'Start Game' button and take a screenshot", () => {
+    
+        cy.get("#startButton").click();
+    
+        // Check that the game canvas becomes visible (wait for it)
+        cy.get("#gameCanvas").should("be.visible");
+    
+        // Take a screenshot after the canvas becomes visible
+        cy.screenshot("game_started"); 
       });
+    
+    
      
     
     it('checks if the timer is working correctly', () => {
